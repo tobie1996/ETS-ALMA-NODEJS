@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Liste Produits</title>
+		<!-- Google Font: Source Sans Pro -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="../css/adminlte.min.css">
+		<link rel="stylesheet" href="../css/custom.css">
+	</head>
+	<body class="hold-transition sidebar-mini">
+		<!-- Site wrapper -->
+		<div class="wrapper">
+			<!-- Navbar -->
+			<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+				<!-- Right navbar links -->
+				<ul class="navbar-nav">
+					<li class="nav-item">
+					  	<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+					</li>					
+				</ul>
+				<div class="navbar-nav pl-2">
+					<ol class="breadcrumb p-0 m-0 bg-white">
+						<li class="breadcrumb-item"><a href="products">Produits</a></li>
+						<li class="breadcrumb-item active">Liste</li>
+					</ol>
+				</div>
+				
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" data-widget="fullscreen" href="#" role="button">
+							<i class="fas fa-expand-arrows-alt"></i>
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link p-0 pr-3" data-toggle="dropdown" href="#">
+							<img src="img/avatar5.png" class='img-circle elevation-2' width="40" height="40" alt="">
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<!-- /.navbar -->
+			<!-- Main Sidebar Container -->
+			<aside class="main-sidebar sidebar-dark-primary elevation-4">
+				<!-- Brand Logo -->
+				
+				<a href="#" class="brand-link">
+					<img src="img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+					<span class="brand-text font-weight-light">Ets.ALMA SHOP</span>
+				</a>
+				<!-- Sidebar -->
+				<div class="sidebar">
+					<!-- Sidebar user (optional) -->
+					<nav class="mt-2">
+						<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+							<!-- Add icons to the links using the .nav-icon class
+								with font-awesome or any other icon font library -->
+							<li class="nav-item">
+								<a href="show-dashboard" class="nav-link">
+									<i class="nav-icon fas fa-tachometer-alt"></i>
+									<p>Tableau de Bord</p>
+								</a>																
+							</li>
+							<li class="nav-item">
+								<a href="show-category" class="nav-link">
+									<i class="nav-icon fas fa-file-alt"></i>
+									<p>Categories</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="show-subcategory" class="nav-link">
+									<i class="nav-icon fas fa-file-alt"></i>
+									<p>Sous Categories</p>
+								</a>
+							</li>
+							
+							<li class="nav-item">
+								<a href="show-product" class="nav-link">
+									<i class="nav-icon fas fa-tag"></i>
+									<p>Articles</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="show-immobiliers" class="nav-link">
+									<i class="nav-icon fas fa-tag"></i>
+									<p>Immobiliers</p>
+								</a>
+							</li>
+												
+						</ul>
+					</nav>
+					<!-- /.sidebar-menu -->
+				</div>
+				<!-- /.sidebar -->
+         	</aside>
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">					
+					<div class="container-fluid my-2">
+						<div class="row mb-2">
+							<div class="col-sm-6">
+								<h1>Immobiliers</h1>
+							</div>
+							<div class="col-sm-6 text-right">
+								<a href="#addservice" class="btn btn-primary" data-toggle="modal">Création service</a>
+							</div>
+						</div>
+					</div>
+					<!-- /.container-fluid -->
+				</section>
+				<!-- Main content -->
+				<section class="content">
+					<!-- Default box -->
+					<div class="container-fluid">
+						<div class="card">
+							<div class="card-header">
+								<div class="card-tools">
+									<div class="input-group input-group" style="width: 250px;">
+										<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+					
+										<div class="input-group-append">
+										  <button type="submit" class="btn btn-default">
+											<i class="fas fa-search"></i>
+										  </button>
+										</div>
+									  </div>
+								</div>
+							</div>
+							<div class="card-body table-responsive p-0">								
+								<table class="table table-hover text-nowrap">
+									<thead>
+										<tr>
+											<th width="60">ID</th>
+											<th width="80"></th>
+											<th>SERVICE</th>
+											<th>PRIX</th>
+											<th>DESCRIPTION</th>
+											<th width="100">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% for (let i=0; i<immobiliers.length; i++) { %> 
+										<tr>
+											<td><%= immobiliers[i].id %></td>
+											<td><img src="/uploads/<%= immobiliers[i].image %>" class="img-thumbnail" width="50"/> </td> 											
+											<td><a href="#"><%= immobiliers[i].titre %></a></td>
+											<td><%= immobiliers[i].prix %></td>
+											<td><%= immobiliers[i].description %></td>											
+											
+											<td>
+												<a href="#edditimmobiliers<%= immobiliers[i].id %>" data-toggle="modal">
+													<svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+														<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+													</svg>
+												</a>
+												<a href="#deleteimmobiliers<%= immobiliers[i].id %>" class="text-danger w-4 h-4 mr-1" data-toggle="modal">
+													<svg wire:loading.remove.delay="" wire:target="" class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+														<path	ath fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+												  	</svg>
+												</a>
+											</td>
+										</tr>
+										<% } %>
+									</tbody>
+								</table>										
+							</div>
+							<div class="card-footer clearfix">
+								<ul class="pagination pagination m-0 float-right">
+								  <li class="page-item"><a class="page-link" href="#">«</a></li>
+								  <li class="page-item"><a class="page-link" href="#">1</a></li>
+								  <li class="page-item"><a class="page-link" href="#">2</a></li>
+								  <li class="page-item"><a class="page-link" href="#">3</a></li>
+								  <li class="page-item"><a class="page-link" href="#">»</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /.card -->
+				</section>
+				<!-- /.content -->
+			</div>
+			<!-- /.content-wrapper -->
+
+
+
+		<!----add-modal start--------->
+
+		<div class="modal fade" tabindex="-1" id="addservice" role="dialog">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h5 class="modal-title">Nouveau service</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+			<form method="POST" action="add-immobiliers" enctype="multipart/form-data">
+
+				  <div class="form-group">
+					  <label>Titre</label>
+					  <input type="text" class="form-control" name="titre" required >
+				  </div>
+
+				  <div class="form-group">
+					  <label>Prix</label>
+					  <input type="number" class="form-control" name="prix" required>
+				  </div>
+
+				  <div class="form-group">
+					  <label>Description</label>
+					  <textarea class="form-control" name="description" required></textarea>
+				  </div>
+
+				   <div class="form-group">
+					<div class="card-body">
+						<h2 class="h4 mb-3">Importer image article</h2>								
+						<div id="image" class="dropzone dz-clickable">
+							<div class="dz-message needsclick">  
+								<input type="file" class="form-control" name="image" required>                                       
+							</div>
+						</div>
+					</div>	                                                                      
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+					<button type="submit" class="btn btn-success">Enregistrer</button>
+				  </div>
+			  </form>
+				</div>
+				
+			  </div>
+			</div>
+		  </div>
+		  <!----End add-modal start--------->
+
+		  <!----Eddit-modal start--------->
+		  <% for (let i=0; i<immobiliers.length; i++) { %>
+		<div class="modal fade" tabindex="-1" id="edditimmobiliers<%= immobiliers[i].id %>"  role="dialog">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h5 class="modal-title">Modifier article</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+			<form method="POST" action="/eddit-immobiliers/<%=immobiliers[i].id %>">
+				  <div class="form-group">
+					  <label>Titre</label>
+					  <input type="text" class="form-control" name="titre" value="<%= immobiliers[i].titre %>">
+				  </div>
+
+				  <div class="form-group">
+					  <label>Prix</label>
+					  <input type="number" class="form-control" name="prix" value="<%= immobiliers[i].prix %>">
+				  </div>
+
+				  <div class="form-group">
+					  <label>Description</label>
+					  <textarea class="form-control" name="description" ><%= immobiliers[i].description %></textarea>
+				  </div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+					<button type="submit" class="btn btn-success">Sauvegarder</button>
+				</div>
+			</form>
+				</div>
+				
+			  </div>
+			</div>
+		  </div>
+		  <% } %>
+		  <!----Eddit add-modal start--------->
+
+
+	
+		  <% for (let i=0; i<immobiliers.length; i++) { %>
+			<!----delete-modal start--------->
+			<div class="modal fade" tabindex="-1" id="deleteimmobiliers<%= immobiliers[i].id %>"  role="dialog">
+				<div class="modal-dialog" role="document">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <h5 class="modal-title">Supprimer article</h5>
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+					<div class="modal-body">
+					  <p>Êtes-vous sûr de vouloir supprimer cet article?</p>
+					  <p class="text-warning"><small>cette action ne peut pas être annulée</small></p>
+					</div>
+					<form method="POST" action="/delete-immobiliers/<%= immobiliers[i].id %>">
+						<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+						<button type="submit" class="btn btn-success">Supprimer</button>
+						</div>
+					</form>
+				  </div>
+				</div>
+			  </div>
+			<% } %>
+
+
+			<footer class="main-footer">
+				
+				<strong>Copyright &copy; 2014-2022 AmazingShop All rights reserved.
+			</footer>
+			
+		</div>
+		<!-- ./wrapper -->
+		<!-- jQuery -->
+		<script src="../plugins/jquery/jquery.min.js"></script>
+		<!-- Bootstrap 4 -->
+		<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- AdminLTE App -->
+		<script src="../js/adminlte.min.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="../js/demo.js"></script>
+	</body>
+</html>
